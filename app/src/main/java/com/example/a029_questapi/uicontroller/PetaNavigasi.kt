@@ -1,0 +1,36 @@
+package com.example.a029_questapi.uicontroller
+
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import com.example.a029_questapi.uicontroller.route.DestinasiEntry
+import com.example.a029_questapi.uicontroller.route.DestinasiHome
+import com.example.a029_questapi.view.EntrySiswaScreen
+
+@Composable
+fun HostNavigasi(
+    navController: NavHostController,
+    modifier: Modifier = Modifier
+) {
+    NavHost(navController = navController,
+        startDestination = DestinasiHome.route,
+        modifier = Modifier) {
+        composable(DestinasiHome.route) {
+            HomeScreen(navigateToItemEntry = { navController.navigate
+                (DestinasiEntry.route) },
+                navigateToItemUpdate = {  })
+        }
+        composable(DestinasiEntry.route) {
+            EntrySiswaScreen(navigateBack = { navController.navigate(
+                DestinasiHome.route) }
+            )
+        }
+        composable(DestinasiEntry.route) {
+            EntrySiswaScreen(navigateBack = { navController.navigate(
+                DestinasiHome.route) }
+            )
+        }
+    }
+}
