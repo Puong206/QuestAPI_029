@@ -1,2 +1,6 @@
 package com.example.a029_questapi.repositori
 
+interface ContainerApp {
+    val repositoryDataSiswa : RepositoryDataSiswa
+}
+
