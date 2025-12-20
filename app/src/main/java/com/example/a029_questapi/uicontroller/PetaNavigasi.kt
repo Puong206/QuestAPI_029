@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import com.example.a029_questapi.uicontroller.route.DestinasiEntry
 import com.example.a029_questapi.uicontroller.route.DestinasiHome
 import com.example.a029_questapi.view.EntrySiswaScreen
+import com.example.a029_questapi.view.HomeScreen
 
 @Composable
 fun HostNavigasi(
@@ -18,8 +19,8 @@ fun HostNavigasi(
         startDestination = DestinasiHome.route,
         modifier = Modifier) {
         composable(DestinasiHome.route) {
-            HomeScreen(navigateToItemEntry = { navController.navigate
-                (DestinasiEntry.route) },
+            HomeScreen(navigateToItemEntry = { navController.navigate(
+                DestinasiEntry.route) },
                 navigateToItemUpdate = {  })
         }
         composable(DestinasiEntry.route) {
