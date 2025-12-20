@@ -4,8 +4,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -21,6 +23,7 @@ import com.example.a029_questapi.modeldata.DetailSiswa
 import com.example.a029_questapi.viewmodel.EntryViewModel
 import com.example.a029_questapi.viewmodel.provider.PenyediaViewModel
 import com.example.a029_questapi.R
+import com.example.a029_questapi.modeldata.UIStateSiswa
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,6 +41,33 @@ fun EntrySiswaScreen(
         EntrySiswaBody(
 
         )
+    }
+}
+
+@Composable
+fun EntrySiswaBody(
+    uiStateSiswa: UIStateSiswa = UIStateSiswa(),
+    onSiswaValueChange: (DetailSiswa) -> Unit = {},
+    onSaveClick: () -> Unit = {},
+    modifier: Modifier = Modifier
+){
+    Column(
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_large)),
+        modifier = modifier.padding(dimensionResource(id = R.dimen.padding_medium))
+    ) {
+        FormTambahSiswa(
+            detailSiswa = uiStateSiswa.detailSiswa,
+            onValueChange = onSiswaValueChange,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Button(
+            onClick = onSaveClick,
+            enabled = uiStateSiswa.isEntryValid,
+            shape = MaterialTheme.shapes.small,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(stringResource(R.string.btn_submit))
+        }
     }
 }
 
