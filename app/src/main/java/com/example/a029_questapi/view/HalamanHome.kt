@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -95,6 +96,23 @@ fun HomeBody(
 //        when(statusUiSiswa){
 //            is StatusUiSiswa.Loading -> LoadingScreen
 //        }
+    }
+}
+
+@Composable
+fun ErrorScreen(
+    retryAction: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(stringResource(R.string.gagal))
+        Button(onClick = retryAction) {
+            Text(stringResource(R.string.retry))
+        }
     }
 }
 
