@@ -8,7 +8,7 @@ import com.example.a029_questapi.modeldata.DetailSiswa
 import com.example.a029_questapi.modeldata.UIStateSiswa
 import com.example.a029_questapi.modeldata.toDataSiswa
 import com.example.a029_questapi.repositori.RepositoryDataSiswa
-import okhttp3.Response
+import retrofit2.Response
 
 class EntryViewModel(private val repositoryDataSiswa: RepositoryDataSiswa): ViewModel() {
     var uiStateSiswa by mutableStateOf(UIStateSiswa())
