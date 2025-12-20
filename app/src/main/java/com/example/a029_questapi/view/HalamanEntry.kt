@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -11,6 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -24,6 +27,8 @@ import com.example.a029_questapi.viewmodel.EntryViewModel
 import com.example.a029_questapi.viewmodel.provider.PenyediaViewModel
 import com.example.a029_questapi.R
 import com.example.a029_questapi.modeldata.UIStateSiswa
+import com.example.a029_questapi.uicontroller.route.DestinasiEntry
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -33,13 +38,31 @@ fun EntrySiswaScreen(
     viewModel: EntryViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ) {
     val coroutineScope = rememberCoroutineScope()
-    val scrollBehavior = rememberTopAppBarState()
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {}
+        topBar = {
+            SiswaTopAppBar(
+                title = stringResource(DestinasiEntry.titleRes),
+                canNavigateBack = true,
+                navigateUp = navigateBack,
+                scrollBehavior = scrollBehavior
+            )
+        }
     ) { innerPadding ->
         EntrySiswaBody(
-
+            uiStateSiswa = viewModel.uiStateSiswa,
+            onSiswaValueChange = viewModel::updateUiState,
+            onSaveClick = {
+                coroutineScope.launch {
+                    viewModel.addSiswa()
+                    navigateBack()
+                }
+            },
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
         )
     }
 }
