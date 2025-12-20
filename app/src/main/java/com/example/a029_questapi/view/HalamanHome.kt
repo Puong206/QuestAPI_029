@@ -96,9 +96,14 @@ fun HomeBody(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ) {
-//        when(statusUiSiswa){
-//            is StatusUiSiswa.Loading -> LoadingScreen
-//        }
+        when(statusUiSiswa){
+            is StatusUiSiswa.Loading -> LoadingScreen()
+            is StatusUiSiswa.Success -> DaftarSiswa(itemSiswa = statusUiSiswa.siswa,
+                onSiswaClick = {onSiswaClick(it.id)})
+            is StatusUiSiswa.Error -> ErrorScreen(retryAction = retryAction,
+                modifier = Modifier.fillMaxSize()
+            )
+        }
     }
 }
 
