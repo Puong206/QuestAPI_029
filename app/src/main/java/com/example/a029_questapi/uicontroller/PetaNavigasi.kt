@@ -3,9 +3,12 @@ package com.example.a029_questapi.uicontroller
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.a029_questapi.modeldata.DetailSiswa
 import com.example.a029_questapi.uicontroller.route.DestinasiDetail
 import com.example.a029_questapi.uicontroller.route.DestinasiEntry
 import com.example.a029_questapi.uicontroller.route.DestinasiHome
@@ -40,10 +43,10 @@ fun HostNavigasi(
                 DestinasiHome.route) }
             )
         }
-        composable(DestinasiEntry.route) {
-            EntrySiswaScreen(navigateBack = { navController.navigate(
-                DestinasiHome.route) }
-            )
+        composable(DestinasiDetail.routeWithArgs, arguments = listOf(navArgument(DestinasiDetail.itemIdArg) {
+            type = NavType.IntType })
+        ) {
+            //
         }
     }
 }
