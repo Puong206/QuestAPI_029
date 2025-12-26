@@ -2,6 +2,7 @@ package com.example.a029_questapi.view
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -45,7 +46,34 @@ fun DetailDataSiswa(
             contentColor = MaterialTheme.colorScheme.onPrimaryContainer
         )
     ) {
-        
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(dimensionResource(R.dimen.padding_medium)),
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium))
+        ) {
+            BarisDetailData(
+                labelResID = R.string.nama1,
+                itemDetail = siswa.nama,
+                modifier = Modifier.padding(
+                    horizontal = dimensionResource(R.dimen.padding_medium)
+                )
+            )
+            BarisDetailData(
+                labelResID = R.string.alamat1,
+                itemDetail = siswa.alamat,
+                modifier = Modifier.padding(
+                    horizontal = dimensionResource(R.dimen.padding_medium)
+                )
+            )
+            BarisDetailData(
+                labelResID = R.string.telpon1,
+                itemDetail = siswa.telpon,
+                modifier = Modifier.padding(
+                    horizontal = dimensionResource(R.dimen.padding_medium)
+                )
+            )
+        }
     }
 }
 
