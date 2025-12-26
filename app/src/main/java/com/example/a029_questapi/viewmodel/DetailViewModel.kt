@@ -1,5 +1,6 @@
 package com.example.a029_questapi.viewmodel
 
+import android.annotation.SuppressLint
 import retrofit2.HttpException
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -11,6 +12,7 @@ import com.example.a029_questapi.modeldata.DataSiswa
 import com.example.a029_questapi.repositori.RepositoryDataSiswa
 import com.example.a029_questapi.uicontroller.route.DestinasiDetail
 import kotlinx.coroutines.launch
+import retrofit2.Response
 import java.io.IOException
 
 sealed interface StatusUIDetail {
@@ -44,5 +46,13 @@ RepositoryDataSiswa): ViewModel() {
         }
     }
 
-
+    @SuppressLint("SuspiciousIndentation")
+    suspend fun hapusSatuSiswa() {
+        val resp: Response<Void> = repositoryDataSiswa.hapusSatuSiswa(idSiswa)
+        if (resp.isSuccessful) {
+            println("Delete Hapus Data : ${resp.message()}")
+        } else {
+            println("Gagal Hapus Data : ${resp.errorBody()}")
+        }
+    }
 }
