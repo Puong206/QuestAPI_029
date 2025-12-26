@@ -10,6 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.a029_questapi.modeldata.DetailSiswa
 import com.example.a029_questapi.uicontroller.route.DestinasiDetail
+import com.example.a029_questapi.uicontroller.route.DestinasiEdit
 import com.example.a029_questapi.uicontroller.route.DestinasiEntry
 import com.example.a029_questapi.uicontroller.route.DestinasiHome
 import com.example.a029_questapi.view.EntrySiswaScreen
@@ -45,7 +46,12 @@ fun HostNavigasi(
         }
         composable(DestinasiDetail.routeWithArgs, arguments = listOf(navArgument(DestinasiDetail.itemIdArg) {
             type = NavType.IntType })
-        ) {
+        ){
+            //
+        }
+        composable(DestinasiEdit.routeWithArgs, arguments = listOf(navArgument(DestinasiEdit.itemIdArg) {
+            type = NavType.IntType })
+        ){
             //
         }
     }
