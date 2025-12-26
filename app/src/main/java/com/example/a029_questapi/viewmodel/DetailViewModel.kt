@@ -1,13 +1,17 @@
 package com.example.a029_questapi.viewmodel
 
+import retrofit2.HttpException
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.a029_questapi.modeldata.DataSiswa
 import com.example.a029_questapi.repositori.RepositoryDataSiswa
 import com.example.a029_questapi.uicontroller.route.DestinasiDetail
+import kotlinx.coroutines.launch
+import java.io.IOException
 
 sealed interface StatusUIDetail {
     data class Success(val satusiswa: DataSiswa) : StatusUIDetail
@@ -20,5 +24,25 @@ RepositoryDataSiswa): ViewModel() {
     private val idSiswa: Int = checkNotNull(savedStateHandle[DestinasiDetail.itemIdArg])
     var statusUIDetail: StatusUIDetail by mutableStateOf(StatusUIDetail.Loading)
         private set
+
+    init {
+        getSatuSiswa()
+    }
+
+    fun getSatuSiswa() {
+        viewModelScope.launch {
+            statusUIDetail = StatusUIDetail.Loading
+            statusUIDetail = try {
+                StatusUIDetail.Success(satusiswa = repositoryDataSiswa.getSatuSiswa(idSiswa))
+            }
+            catch (e: IOException) {
+                StatusUIDetail.Error
+            }
+            catch (e: HttpException) {
+                StatusUIDetail.Error
+            }
+        }
+    }
+
 
 }
