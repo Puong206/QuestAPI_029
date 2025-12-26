@@ -13,6 +13,9 @@ Entry
 Detail
 <img width="1080" height="2160" alt="Screenshot_20251226_183629" src="https://github.com/user-attachments/assets/3ae69e23-ee7a-406f-99f4-6082567aed86" />
 
+Edit
+<img width="1080" height="2160" alt="Screenshot_20251226_204154" src="https://github.com/user-attachments/assets/2ca24409-48d1-4022-9a0f-191b1811fa87" />
+
 Delete
 <img width="1080" height="2160" alt="Screenshot_20251226_183637" src="https://github.com/user-attachments/assets/64aefc9f-fba1-4911-a64d-9982bf6becb0" />
 
