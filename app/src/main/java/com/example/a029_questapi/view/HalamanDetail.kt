@@ -37,6 +37,13 @@ fun DetailSiswaScreen(
 }
 
 @Composable
+private fun BodyDetailDataSiswa(
+
+){
+
+}
+
+@Composable
 fun DetailDataSiswa(
     siswa: DataSiswa, modifier: Modifier = Modifier
 ){
